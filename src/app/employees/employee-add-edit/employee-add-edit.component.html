@@ -1,0 +1,40 @@
+<nb-card>
+    <nb-card-header>
+        {{ 'employees.' + addOrEdit + 'Employee' | translate }}
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="employeeForm" class="form">
+            <div class="form-group">
+                <label for="employeeFirstName">{{ 'employees.firstName' | translate }}</label>
+                <input fullWidth nbInput type="text" class="form-control" formControlName="employeeFirstName" [status]="!employeeForm.controls.employeeFirstName.valid && employeeForm.controls.employeeFirstName.dirty ? 'danger' : 'primary'">
+                <span class="text-danger" *ngIf="!employeeForm.controls.employeeFirstName.valid && employeeForm.controls.employeeFirstName.dirty">
+                    {{ 'employees.employeeFirstNameError' | translate }}
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="employeeLastName">{{ 'employees.lastName' | translate }}</label>
+                <input fullWidth nbInput type="text" class="form-control" formControlName="employeeLastName" [status]="!employeeForm.controls.employeeLastName.valid && employeeForm.controls.employeeLastName.dirty ? 'danger' : 'primary'">
+                <span class="text-danger" *ngIf="!employeeForm.controls.employeeLastName.valid && employeeForm.controls.employeeLastName.dirty">
+                    {{ 'employees.employeeLastNameError' | translate }}
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="employeeEmail">{{ 'employees.email' | translate }}</label>
+                <input fullWidth nbInput type="text" class="form-control" formControlName="employeeEmail" [status]="!employeeForm.controls.employeeEmail.valid && employeeForm.controls.employeeEmail.dirty ? 'danger' : 'primary'">
+                <span class="text-danger" *ngIf="!employeeForm.controls.employeeEmail.valid && employeeForm.controls.employeeEmail.dirty">
+                    {{ 'employees.employeeEmailError' | translate }}
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="departmentName">{{ 'employees.department' | translate }}</label>
+                <input fullWidth nbInput type="text" class="form-control" formControlName="departmentName" [status]="!employeeForm.controls.departmentName.valid && employeeForm.controls.departmentName.dirty ? 'danger' : 'primary'">
+                <span class="text-danger" *ngIf="!employeeForm.controls.departmentName.valid && employeeForm.controls.departmentName.dirty">
+                    {{ 'departments.departmentNameError' | translate }}
+                </span>
+            </div>
+            <button status="primary" nbButton [disabled]="!employeeForm.valid" (click)="addOrEdit === 'add' ? addEmployee() : editEmployee()">
+                {{ 'employees.' + addOrEdit + 'Employee' | translate }}
+            </button>
+        </form>
+    </nb-card-body>
+</nb-card>

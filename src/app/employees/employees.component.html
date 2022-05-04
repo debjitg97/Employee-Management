@@ -1,0 +1,77 @@
+<h2 class="text-center">{{ 'employees.employees' | translate }}</h2>
+<div class="d-flex justify-content-center align-items-center flex-wrap mt-2">
+    <div>
+        {{ 'general.itemsPerPage' | translate }}:
+        <nb-select class="mx-2" [(ngModel)]="pageSize" (ngModelChange)="updateEmployees()">
+            <nb-option *ngFor="let pageSizeOption of pageSizeOptions" [value]="pageSizeOption">{{ pageSizeOption }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        {{ 'general.sortBy' | translate }}:
+        <nb-select #selectComponent class="mx-2" [(ngModel)]="sortField" (ngModelChange)="updateEmployees()">
+            <nb-option *ngFor="let sortFieldOption of sortFieldOptions" [value]="sortFieldOption.value">{{ sortFieldOption.label }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        {{ 'general.sortDirection' | translate }}:
+        <nb-select class="mx-2" [(ngModel)]="sortDirection" (ngModelChange)="updateEmployees()">
+            <nb-option *ngFor="let sortDirectionOption of sortDirectionOptions" [value]="sortDirectionOption.value">{{ sortDirectionOption.label }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        <input class="mx-2" placeholder="{{ 'employees.searchByFirstName' | translate }}" nbInput [(ngModel)]="searchQuery" (ngModelChange)="updateEmployees()">
+    </div>
+    <div>
+        <button class="mx-2" nbButton status="primary" (click)="openAddDialog(addEmployee)">{{ 'employees.addEmployee' | translate }}</button>
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-start mt-2">
+    <table class="table-width" [nbSpinner]="loading">
+        <tr class="table-header">
+            <td class="table-column">{{ 'employees.id' | translate }}</td>
+            <td class="table-column">{{ 'employees.firstName' | translate }}</td>
+            <td class="table-column">{{ 'employees.lastName' | translate }}</td>
+            <td class="table-email-column">{{ 'employees.email' | translate }}</td>
+            <td class="table-column">{{ 'employees.department' | translate }}</td>
+            <td class="table-column"></td>
+        </tr>
+        <tr class="table-row" *ngFor="let employee of employees">
+            <td>{{ employee.employeeId }}</td>
+            <td>{{ employee.employeeFirstName }}</td>
+            <td>{{ employee.employeeLastName }}</td>
+            <td>{{ employee.employeeEmail }}</td>
+            <td>{{ employee.employeeDepartment.departmentName }}</td>
+            <td class="text-center">
+                <nb-icon title="{{ 'employees.editEmployee' | translate }}" icon="edit-outline" (click)="openEditDialog(editEmployee, employee.employeeId || 0)"></nb-icon>
+                <nb-icon title="{{ 'employees.deleteEmployee' | translate }}" icon="trash-2-outline" (click)="deleteEmployeeAndUpdate(employee.employeeId || 0)" class="ml-2"></nb-icon>
+                <ng-template #editEmployee>
+                    <app-employee-add-edit 
+                        addOrEdit="edit" 
+                        [employeeFirstName]="employee.employeeFirstName" 
+                        [employeeLastName]="employee.employeeLastName" 
+                        [employeeEmail]="employee.employeeEmail" 
+                        [departmentName]="employee.employeeDepartment.departmentName" 
+                        (edit)="editEmployeeAndUpdate($event)"
+                    >
+                    </app-employee-add-edit>
+                </ng-template>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-2">
+    <ngb-pagination
+        (pageChange)="updatePage($event)"
+        [page]="pageNo"
+        [pageSize]="stringToInt(pageSize)"
+        [collectionSize]="totalElements"
+        [maxSize]="5" 
+        [rotate]="true" 
+        [ellipses]="false" 
+        [boundaryLinks]="true"
+    >
+    </ngb-pagination>
+</div>
+<ng-template #addEmployee>
+    <app-employee-add-edit addOrEdit="add" employeeFirstName="" employeeLastName="" employeeEmail="" departmentName="" (add)="addEmployeeAndUpdate($event)"></app-employee-add-edit>
+</ng-template>

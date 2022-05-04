@@ -1,0 +1,19 @@
+<nb-card>
+    <nb-card-header>
+        {{ 'departments.' + addOrEdit + 'Department' | translate }}
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="departmentForm" class="form">
+            <div class="form-group">
+                <label for="departmentName">{{ 'departments.departmentName' | translate }}</label>
+                <input fullWidth nbInput type="text" class="form-control" formControlName="departmentName" [status]="!departmentForm.controls.departmentName.valid && departmentForm.controls.departmentName.dirty ? 'danger' : 'primary'">
+                <span class="text-danger" *ngIf="!departmentForm.controls.departmentName.valid && departmentForm.controls.departmentName.dirty">
+                    {{ 'departments.departmentNameError' | translate }}
+                </span>
+            </div>
+            <button status="primary" nbButton [disabled]="!departmentForm.valid" (click)="addOrEdit === 'add' ? addDepartment() : editDepartment()">
+                {{ 'departments.' + addOrEdit + 'Department' | translate }}
+            </button>
+        </form>
+    </nb-card-body>
+</nb-card>

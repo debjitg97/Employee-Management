@@ -1,0 +1,62 @@
+<h2 class="text-center">{{ 'departments.departments' | translate }}</h2>
+<div class="d-flex justify-content-center align-items-center flex-wrap mt-2">
+    <div>
+        {{ 'general.itemsPerPage' | translate }}:
+        <nb-select class="mx-2" [(ngModel)]="pageSize" (ngModelChange)="updateDepartments()">
+            <nb-option *ngFor="let pageSizeOption of pageSizeOptions" [value]="pageSizeOption">{{ pageSizeOption }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        {{ 'general.sortBy' | translate }}:
+        <nb-select #selectComponent class="mx-2" [(ngModel)]="sortField" (ngModelChange)="updateDepartments()">
+            <nb-option *ngFor="let sortFieldOption of sortFieldOptions" [value]="sortFieldOption.value">{{ sortFieldOption.label }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        {{ 'general.sortDirection' | translate }}:
+        <nb-select class="mx-2" [(ngModel)]="sortDirection" (ngModelChange)="updateDepartments()">
+            <nb-option *ngFor="let sortDirectionOption of sortDirectionOptions" [value]="sortDirectionOption.value">{{ sortDirectionOption.label }}</nb-option>
+        </nb-select>
+    </div>
+    <div>
+        <input class="mx-2" placeholder="{{ 'departments.searchByName' | translate }}" nbInput [(ngModel)]="searchQuery" (ngModelChange)="updateDepartments()">
+    </div>
+    <div>
+        <button class="mx-2" nbButton status="primary" (click)="openAddDialog(addDepartment)">{{ 'departments.addDepartment' | translate }}</button>
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-start mt-2">
+    <table class="table-width" [nbSpinner]="loading">
+        <tr class="table-header">
+            <td class="table-column">{{ 'departments.id' | translate }}</td>
+            <td class="table-column">{{ 'departments.name' | translate }}</td>
+            <td class="table-column"></td>
+        </tr>
+        <tr class="table-row" *ngFor="let department of departments">
+            <td>{{ department.departmentId }}</td>
+            <td>{{ department.departmentName }}</td>
+            <td class="text-center">
+                <nb-icon title="{{ 'departments.editDepartment' | translate }}" icon="edit-outline" (click)="openEditDialog(editDepartment, department.departmentId || 0)"></nb-icon>
+                <ng-template #editDepartment>
+                    <app-department-add-edit addOrEdit="edit" [departmentName]="department.departmentName" (edit)="editDepartmentAndUpdate($event)"></app-department-add-edit>
+                </ng-template>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-2">
+    <ngb-pagination
+        (pageChange)="updatePage($event)"
+        [page]="pageNo"
+        [pageSize]="stringToInt(pageSize)"
+        [collectionSize]="totalElements"
+        [maxSize]="5" 
+        [rotate]="true" 
+        [ellipses]="false" 
+        [boundaryLinks]="true"
+    >
+    </ngb-pagination>
+</div>
+<ng-template #addDepartment>
+    <app-department-add-edit addOrEdit="add" departmentName="" (add)="addDepartmentAndUpdate($event)"></app-department-add-edit>
+</ng-template>

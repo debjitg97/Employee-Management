@@ -1,0 +1,41 @@
+{
+    "general": {
+        "itemsPerPage": "Items per page",
+        "sortBy": "Sort by",
+        "sortDirection": "Sort direction",
+        "success": "Success",
+        "error": "Error",
+        "title": "Employee Management App"
+    },
+    "departments": {
+        "departments": "Departments",
+        "addDepartment": "Add Department",
+        "editDepartment": "Edit Department",
+        "id": "ID",
+        "name": "Name",
+        "searchByName": "Search by name",
+        "departmentName": "Department Name",
+        "departmentNameError": "Department Name must be between 3 and 10 characters",
+        "departmentAddSuccess": "Successfully added department!",
+        "departmentEditSuccess": "Successfully edited department!"
+    },
+    "employees": {
+        "employees": "Employees",
+        "searchByFirstName": "Search by first name",
+        "addEmployee": "Add Employee",
+        "editEmployee": "Edit Employee",
+        "deleteEmployee": "Delete Employee",
+        "id": "ID",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "department": "Department",
+        "employeeFirstNameError": "First Name must have between 3 and 10 characters",
+        "employeeLastNameError": "Last Name must have between 3 and 10 characters",
+        "employeeEmailError": "Email is not valid",
+        "employeeAddSuccess": "Successfully added employee!",
+        "employeeEditSuccess": "Successfully edited employee!",
+        "employeeDeleteSuccess": "Successfully deleted employee!",
+        "employeeDeleteConfirm": "Are you sure you want to delete employee?"
+    }
+}

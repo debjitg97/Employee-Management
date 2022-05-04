@@ -1,0 +1,36 @@
+.table-column {
+    width: 33.33%;
+}
+
+.table-header {
+    line-height: 2rem;
+    font-size: 1.2rem;
+    border-bottom: 0.2rem solid;
+}
+
+.table-row {
+    line-height: 2rem;
+    font-size: 1rem;
+}
+
+.table-width {
+    width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    .table-width {
+      width: 80%;
+    }
+}
+
+nb-icon {
+    cursor: pointer;
+}
+
+button {
+    text-transform: none !important;
+}
+
+:host ::ng-deep a {
+    text-decoration: none !important;
+}
