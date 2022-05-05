@@ -1,7 +1,6 @@
 # Employee Management Frontend
 Frontend for the Employee Management App.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
-
+The Employee Management App is a Full Stack Application used to maintain a record of Employees and Departments.
 ## Built With
 
 * [Angular](https://angular.io/)
