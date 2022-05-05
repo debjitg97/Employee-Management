@@ -14,5 +14,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 * Add, Edit and Delete Employees
 * Add and Edit Departments
 * View existing Employees and Departments with pagination, sorting and searching
+* Two themes - Light and Dark
 
 You can find the backend here: https://github.com/debjitg97/Employee-Management-Backend
