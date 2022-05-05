@@ -2,6 +2,13 @@
 Frontend for the Employee Management App.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.2.
 
+## Built With
+
+* [Angular](https://angular.io/)
+* [Bootstrap](https://ng-bootstrap.github.io/#/home)
+* [Nebular](https://akveo.github.io/nebular/)
+* HTML, SCSS
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
